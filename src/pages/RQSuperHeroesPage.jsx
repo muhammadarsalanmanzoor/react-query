@@ -2,15 +2,21 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 
 /**
- * Remember how useQuery returns a loading flag
- * and a API data well it turns out that useQuery
- * also returns an ease error flag as well as the
- * error thrown from the request, we can destructure
- * both of them isError and error
+ * Another great thing about react query is
+ * that it comes with dedicated dev tools.
+ * they help you visualize all of the inner
+ * workings of react query and will likely
+ * save your hours of debugging, let's see
+ * how to added to our application.
+ *
+ * STEP #1:
+ *  - import the dev tools from react query package.
+ *    and we do this in App.js file.
+ *
  */
 const RQSuperHeroesPage = () => {
   const { isLoading, data, isError, error } = useQuery('super-heroes', () => {
-    return axios.get('http://localhost:4000/superheroes1');
+    return axios.get('http://localhost:4000/superheroes');
   });
 
   console.log('Data=>', data);
@@ -19,8 +25,6 @@ const RQSuperHeroesPage = () => {
     return <h2>Loading...</h2>;
   }
 
-  // the only difference in standard super heroes page
-  // and this is we se error.message
   if (isError) {
     return <h2>{error.message}</h2>;
   }
