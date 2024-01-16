@@ -3,32 +3,37 @@ import { useQuery } from 'react-query';
 
 /**
  *  Query Cache:
- *  - In the previous lectures we learned about the query
- *    cache feature in react query, one of the uses of
- *    caching the query results is being able to re-use the
- *    results for subsequent queries that will allow the user
- *    to view the previously fetched data without having to
- *    view the loading indicator every single time this leading
- *    to a slightly better user experience.
+ *   - In the past lectures we learned about query cache and
+ *     stale time we got to know that react query has a default
+ *     cache duration of 5 minutes and default staleTime of 0
+ *     seconds, now let's learn two more configurations related
+ *     to reFetching for which react query provides a default
+ *     value.
+ *   - The first one is refetch on mount by default it is set to
+ *     true, if it is set to true the query will refetch on mount
+ *     if the data is stale, if we set this to false the query
+ *     will not refetch on mount and navigate to the first time
+ *     the data is fetched and if we come back to the page the
+ *     query data will not re-fetched another possible value you
+ *     can specify is the string `always` so irrespective of
+ *     whether query data is stale or not the query will always
+ *     refetch the data when the component mounts.
+ *   - refetchOnWindowFocus by default it is true, so any time
+ *     your tab loses focus and gain focus again a background
+ *     refetch is initiated when the refetch completes the ui
+ *     as updated with the data retrieved and this is a perfectly
+ *     valid default value which ensures your ui is upto date
+ *     with the remote data when your user comes back to the
+ *     application however if you wish you can set it to `false`.
  *
- *  - Another use of Query cache is to reduce the number
- *    of network requests for data that doesn't necessarily
- *    change too often, for example let's say our list of
- *    super heroes does not change often and it is okay if
- *    the user sees stale data for a while in such cases
- *    we can use the cached query results without having to
- *    refetch in the background to achieve that behavior we
- *    configure another property called staleTime.
- *
- *  - for example as a developer i know that the list of
- *    superheroes does not change often even if it does
- *    it is okay if the user is seeing steel data for
- *    perhaps 30 seconds what we can do then is add another
- *    property called staleTime and set it to 30 seconds for
- *    our useQuery hook, by default staleTime is 0 second
- *    which is why previously every visit to the react query
- *    super heroes page would trigger a background re-fetch.
- *
+ *   - refetchOnMount:
+ *     By default iski value `true` hoti hai, jab hum first time
+ *     RQ SuperHero page visit karengy tu initial time reFetch
+ *     request bhi chaly gi or agar hum iski value ko false kardy
+ *     tu initial time reFetch request nahi chaly gi or jab hum tab
+ *     lose kar k wapis ayengy tu reFetch request chaly gi kun k
+ *     reFetchOnWindowFocus ki value true hai by default or hum
+ *     chahien tu iski value bhi false kar sakty hain.
  *
  */
 const RQSuperHeroesPage = () => {
@@ -39,6 +44,8 @@ const RQSuperHeroesPage = () => {
     },
     {
       staleTime: 30000,
+      refetchOnMount: false,
+      refetchOnWindowFocus: 'always',
     }
   );
 
