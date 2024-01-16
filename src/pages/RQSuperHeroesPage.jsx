@@ -2,27 +2,27 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 
 /**
- *
- * useQuery
- *  - useQuery is the hook we are going to be
- *    using for all our data fetching needs.
- *  - This hook requires at least two arguments
- *      - the first argument is unique key to identify
- *        this query, similar to how you would have a
- *        unique id for every row in a database, queries
- *        also have a unique key in react query
- *      - the second argument useQuery accepts a function
- *        that returns a promise
+ * Remember how useQuery returns a loading flag
+ * and a API data well it turns out that useQuery
+ * also returns an ease error flag as well as the
+ * error thrown from the request, we can destructure
+ * both of them isError and error
  */
 const RQSuperHeroesPage = () => {
-  const { isLoading, data } = useQuery('super-heroes', () => {
-    return axios.get('http://localhost:4000/superheroes');
+  const { isLoading, data, isError, error } = useQuery('super-heroes', () => {
+    return axios.get('http://localhost:4000/superheroes1');
   });
 
   console.log('Data=>', data);
 
   if (isLoading) {
     return <h2>Loading...</h2>;
+  }
+
+  // the only difference in standard super heroes page
+  // and this is we se error.message
+  if (isError) {
+    return <h2>{error.message}</h2>;
   }
 
   return (
