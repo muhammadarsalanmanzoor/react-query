@@ -15,6 +15,11 @@ import { useQuery } from 'react-query';
  *        that returns a promise
  */
 const RQSuperHeroesPage = () => {
+  // data refers to the entire API RESPONSE
+  // MORE IMPORTANT bit is that we don't have to manage
+  // state variables based on the effect, react query
+  // abstracts away all of that and makes it really
+  // simple to fetch data in a react component
   const { isLoading, data } = useQuery('super-heroes', () => {
     return axios.get('http://localhost:4000/superheroes');
   });
