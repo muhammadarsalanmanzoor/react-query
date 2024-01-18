@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 /**
  * Remember how useQuery returns a loading flag
  * and a API data well it turns out that useQuery
- * also returns an ease error flag as well as the
+ * also returns an isError flag as well as the
  * error thrown from the request, we can destructure
  * both of them isError and error
  */
