@@ -34,5 +34,17 @@
       "id": "3",
       "name": "Rachel Green"
     }
+  ],
+  "users": [
+    {
+      "id": "ahmed@gmail.com",
+      "channelId": "codevolution"
+    }
+  ],
+  "channels": [
+    {
+      "id": "codevolution",
+      "courses": ["react", "angular", "vue"]
+    }
   ]
 }

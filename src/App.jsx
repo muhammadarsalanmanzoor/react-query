@@ -9,6 +9,7 @@ import Layout from './pages/Layout';
 import './App.css';
 import ParallelQueries from './pages/ParallelQueries';
 import DynamicParallelQueries from './pages/DynamicParallelQueries';
+import DependentQueries from './pages/DependentQueries';
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,10 @@ function App() {
         {
           path: '/rq-dynamic-parallel',
           element: <DynamicParallelQueries heroIds={[1, 3]} />,
+        },
+        {
+          path: '/rq-dependent',
+          element: <DependentQueries email='ahmed@gmail.com' />,
         },
         {
           path: '/super-heroes',
