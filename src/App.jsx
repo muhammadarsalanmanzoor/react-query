@@ -8,6 +8,7 @@ import SuperHeroesPage from './pages/SuperHeroesPage';
 import Layout from './pages/Layout';
 import './App.css';
 import ParallelQueries from './pages/ParallelQueries';
+import DynamicParallelQueries from './pages/DynamicParallelQueries';
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,10 @@ function App() {
         {
           path: '/rq-parallel',
           element: <ParallelQueries />,
+        },
+        {
+          path: '/rq-dynamic-parallel',
+          element: <DynamicParallelQueries heroIds={[1, 3]} />,
         },
         {
           path: '/super-heroes',
