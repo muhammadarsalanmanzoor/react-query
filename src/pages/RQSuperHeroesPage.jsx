@@ -2,43 +2,33 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 
 /**
- *  Query Cache:
- *   - In the past lectures we learned about query cache and
- *     stale time we got to know that react query has a default
- *     cache duration of 5 minutes and default staleTime of 0
- *     seconds, now let's learn two more configurations related
- *     to reFetching for which react query provides a default
- *     value.
- *   - The first one is refetch on mount by default it is set to
- *     true, if it is set to true the query will refetch on mount
- *     if the data is stale, if we set this to false the query
- *     will not refetch on mount and navigate to the first time
- *     the data is fetched and if we come back to the page the
- *     query data will not re-fetched another possible value you
- *     can specify is the string `always` so irrespective of
- *     whether query data is stale or not the query will always
- *     refetch the data when the component mounts.
- *   - refetchOnWindowFocus by default it is true, so any time
- *     your tab loses focus and gain focus again a background
- *     refetch is initiated when the refetch completes the ui
- *     as updated with the data retrieved and this is a perfectly
- *     valid default value which ensures your ui is upto date
- *     with the remote data when your user comes back to the
- *     application however if you wish you can set it to `false`.
+ *  Polling:
+ *  - Polling basically refers to the process of fetching
+ *    data at regular intervals, for example if you have a
+ *    component that shows the real-time price of different
+ *    stocks you might want to fetch data every second to
+ *    update the UI this ensures the UI will always be in sync
+ *    with the remote data irrespective of configurations
+ *    like refetchOnMount or reFetchOnWindowFocus which is
+ *    dependent on user-interaction, now to poll data with
+ *    react query we can make use of another configuration
+ *    called reFetchInterval by default it is set to false
+ *    however you an set it to a number in milliseconds which
+ *    will result in a continuous reFetch of the query at
+ *    that interval for example if i set it to 2000 the query
+ *    will automatically reFetch every two seconds, now
+ *    navigate to browser and you can see that the query
+ *    toggles between fetching and stale every two seconds.
  *
- *   - refetchOnMount:
- *     By default iski value `true` hoti hai, jab hum first time
- *     RQ SuperHero page visit karengy tu initial time reFetch
- *     request bhi chaly gi or agar hum iski value ko false kardy
- *     tu initial time reFetch request nahi chaly gi or jab hum tab
- *     lose kar k wapis ayengy tu reFetch request chaly gi kun k
- *     reFetchOnWindowFocus ki value true hai by default or hum
- *     chahien tu iski value bhi false kar sakty hain.
- *
- *   - always agar hum set karty hain tu iska matlab yeh hai k
- *     yeh staleTime ko nhi dekhega or immediately execute ho
- *     jayega, dono fields main same hai `refetchOnMount` or
- *     `reFetchOnWindowFocus`.
+ *  - Now one point to highlight here is that the polling or
+ *    automatic reFetching is paused if the window loses focus
+ *    if you do want background reFetching at regular intervals
+ *    you can specify another configuration called refetchIntervalInBackground
+ *    and set it to true so this will continue to poll data
+ *    even when the browser is not focused. so using refetchInterval and
+ *    refetchIntervalInBackground you can poll data and provide
+ *    a really good experience in apps where data changes every now
+ *    and then
  *
  */
 const RQSuperHeroesPage = () => {
@@ -48,9 +38,8 @@ const RQSuperHeroesPage = () => {
       return axios.get('http://localhost:4000/superheroes');
     },
     {
-      staleTime: 30000,
-      refetchOnMount: false,
-      refetchOnWindowFocus: 'always',
+      refetchInterval: 2000,
+      refetchIntervalInBackground: true,
     }
   );
 
