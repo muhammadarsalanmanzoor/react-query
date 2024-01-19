@@ -35,6 +35,11 @@ import { useQuery } from 'react-query';
  *     reFetchOnWindowFocus ki value true hai by default or hum
  *     chahien tu iski value bhi false kar sakty hain.
  *
+ *   - always agar hum set karty hain tu iska matlab yeh hai k
+ *     yeh staleTime ko nhi dekhega or immediately execute ho
+ *     jayega, dono fields main same hai `refetchOnMount` or
+ *     `reFetchOnWindowFocus`.
+ *
  */
 const RQSuperHeroesPage = () => {
   const { isLoading, data, isError, error, isFetching } = useQuery(
