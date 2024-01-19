@@ -11,11 +11,11 @@ const useSuperHeroes = (onSuccess, onError) => {
       onSuccess: onSuccess,
       onError: onError,
 
-      select: (data) => {
-        const superHeroNames = data.data.map((hero) => hero.name);
+      // select: (data) => {
+      //   const superHeroNames = data.data.map((hero) => hero.name);
 
-        return superHeroNames;
-      },
+      //   return superHeroNames;
+      // },
     }
   );
 };

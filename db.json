@@ -1,22 +1,22 @@
 {
   "superheroes": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Batman OOO",
       "alterEgo": "Bruce Wayne"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Superman",
       "alterEgo": "Clark Kent"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Wonder Woman",
       "alterEgo": "Princess Diana"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "New SuperHero",
       "alterEgo": "New AlterEgo"
     }
