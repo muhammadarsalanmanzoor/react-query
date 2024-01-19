@@ -2,50 +2,58 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 
 /**
- *  Polling:
- *  - Polling basically refers to the process of fetching
- *    data at regular intervals, for example if you have a
- *    component that shows the real-time price of different
- *    stocks you might want to fetch data every second to
- *    update the UI this ensures the UI will always be in sync
- *    with the remote data irrespective of configurations
- *    like refetchOnMount or reFetchOnWindowFocus which is
- *    dependent on user-interaction, now to poll data with
- *    react query we can make use of another configuration
- *    called reFetchInterval by default it is set to false
- *    however you an set it to a number in milliseconds which
- *    will result in a continuous reFetch of the query at
- *    that interval for example if i set it to 2000 the query
- *    will automatically reFetch every two seconds, now
- *    navigate to browser and you can see that the query
- *    toggles between fetching and stale every two seconds.
+ *  useQuery using onClick:
  *
- *  - Now one point to highlight here is that the polling or
- *    automatic reFetching is paused if the window loses focus
- *    if you do want background reFetching at regular intervals
- *    you can specify another configuration called refetchIntervalInBackground
- *    and set it to true so this will continue to poll data
- *    even when the browser is not focused. so using refetchInterval and
- *    refetchIntervalInBackground you can poll data and provide
- *    a really good experience in apps where data changes every now
- *    and then
+ *  - In the previous lectures we've had a look at the useQuery hook
+ *    for data fetching, we might have notices that the get request
+ *    is fired as soon as the component mounts or if we focus the
+ *    window, however depending on the requirement we might have to
+ *    fetch the data based on a user event and not when the component
+ *    mounts, now in this lecture let's learn how to fetch data using
+ *    useQuery but only onClick of a button.
+ *
+ * - There are two steps we need to implement:
+ *    - STEP #1:
+ *      Inform useQuery not to fire the get request when the component
+ *      mounts, we do that by passing in a configuration called `enabled`
+ *      and setting it to `false`, so if you now go back to the browser
+ *      and navigate to RQ Super Heroes page we don't see the list of
+ *      heroes react query does track the query in dev tools but it's data
+ *      is empty, so STEP #1 disable fetching on mount using the enabled
+ *      flag.
+ *
+ *    - STEP #2:
+ *      We fetch the onClick of a button, let's begin by adding a button
+ *      on the screen and onClick of a button we need to fetch the heroes
+ *      now the question is how do we do that well it is easier you think
+ *      it you might be, useQuery returns a function called `reFetch` to
+ *      manually trigger the query all we have to do is pass it in as the
+ *      onClick handler, now click on button and we now see the heroes list
+ *      of course the query cache and stale time plays the same role on
+ *      first request is loading is true on subsequent requests only isFetching
+ *      is true because the background reFetching that takes place, if you
+ *      have a refresh data button you might want to consider using the isFetching
+ *      flag as well as to display the loading indicator so if isLoading or isFetching
+ *      is true we need to display the loading spinner, now anytime we click on a
+ *      button we see the loading text.
+ *
  *
  */
 const RQSuperHeroesPage = () => {
-  const { isLoading, data, isError, error, isFetching } = useQuery(
+  const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
     'super-heroes',
     () => {
       return axios.get('http://localhost:4000/superheroes');
     },
     {
-      refetchInterval: 2000,
-      refetchIntervalInBackground: true,
+      enabled: false,
+      refetchOnWindowFocus: true,
     }
   );
 
   console.log({ isLoading, isFetching });
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return <h2>Loading...</h2>;
   }
 
@@ -56,6 +64,7 @@ const RQSuperHeroesPage = () => {
   return (
     <>
       <h2>RQSuperHeroesPage</h2>
+      <button onClick={refetch}>Fetch SuperHeroes</button>
       {data?.data.map((hero) => {
         return <div key={hero.id}>{hero.name}</div>;
       })}
