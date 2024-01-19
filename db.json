@@ -20,5 +20,19 @@
       "name": "New SuperHero",
       "alterEgo": "New AlterEgo"
     }
+  ],
+  "friends": [
+    {
+      "id": "1",
+      "name": "Chandler Bing"
+    },
+    {
+      "id": "2",
+      "name": "Joey Tribbiani"
+    },
+    {
+      "id": "3",
+      "name": "Rachel Green"
+    }
   ]
 }

@@ -7,6 +7,7 @@ import RQSuperhero from './pages/RQSuperhero';
 import SuperHeroesPage from './pages/SuperHeroesPage';
 import Layout from './pages/Layout';
 import './App.css';
+import ParallelQueries from './pages/ParallelQueries';
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,10 @@ function App() {
         {
           path: '/rq-super-heroes/:heroId',
           element: <RQSuperhero />,
+        },
+        {
+          path: '/rq-parallel',
+          element: <ParallelQueries />,
         },
         {
           path: '/super-heroes',
