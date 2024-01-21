@@ -40,10 +40,6 @@ function App() {
           element: <DynamicParallelQueries heroIds={[1, 3]} />,
         },
         {
-          path: '/rq-dependent',
-          element: <DependentQueries email='ahmed@gmail.com' />,
-        },
-        {
           path: '/super-heroes',
           element: <SuperHeroesPage />,
         },
