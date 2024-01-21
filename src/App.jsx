@@ -11,6 +11,7 @@ import ParallelQueries from './pages/ParallelQueries';
 import DynamicParallelQueries from './pages/DynamicParallelQueries';
 import DependentQueries from './pages/DependentQueries';
 import PaginatedQueries from './pages/PaginatedQueries';
+import InfinitePaginatedQueries from './pages/InfinitePaginatedQueries';
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,10 @@ function App() {
         {
           path: '/rq-paginated',
           element: <PaginatedQueries />,
+        },
+        {
+          path: '/rq-infinite',
+          element: <InfinitePaginatedQueries />,
         },
         {
           path: '/super-heroes',
