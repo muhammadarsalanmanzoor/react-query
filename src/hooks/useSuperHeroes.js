@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from 'react-query';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
 import axios from 'axios';
 
 export const useSuperHeroes = (onSuccess, onError) => {
@@ -25,5 +25,14 @@ const addSuperHero = (heroDetails) => {
 };
 
 export const useAddSuperHeroData = () => {
-  return useMutation(addSuperHero);
+  const queryClient = useQueryClient();
+
+  return useMutation(addSuperHero, {
+    onSuccess: () => {
+      // this line is same as we specify the line 5
+      // the invalidateQueries will refetch the super
+      // heroes query and that is it pretty simple
+      queryClient.invalidateQueries('super-heroes');
+    },
+  });
 };

@@ -3,20 +3,25 @@ import { useSuperHeroes, useAddSuperHeroData } from '../hooks/useSuperHeroes';
 import { Link } from 'react-router-dom';
 
 /**
- * In the previous lectures we looked at the data fetching aspect of react
- * query now it's time to focus on the data posting aspect that is sending
- * data from your application to any backend if you've worked on web apps
- * for a while you know that posting data like a new todo item or new name
- * or submitting a form are all pretty common, react query does cater to
- * those scenarios but it goes the extra mile to make things simpler for you
- * and that is what we will focus on, in this branch we learn how to perform
- * a basic post request and in upcoming branches we will see what features
- * react query provides to make our life easier.
+ * Now everything is working fine but there is room for
+ * improvement at the moment after we add a hero we have
+ * to manually refetch the super hero list by clicking the
+ * fetch hero button this is because as soon as we add a
+ * new hero the super-hero query data is out of date wouldn't
+ * it be nice if we could tell react query to automatically
+ * refetch the super-heros query as soon as the mutation
+ * succeeds, react query makes it really simple to achieve
+ * that, the feature is called query invalidation, let's
+ * see how to implement it.
  *
- * To summarize:
- * import useMutation hook and call it passing in the mutation function,
- * the mutation function automatically receives any argument you pass
- * when you invoke the mutate function in your component
+ * - STEP #1:
+ * import useQueryClient client from react query then within
+ * the custom mutation hook get hold of the instance, then
+ * we need to get hold of the success callback on the useMutation
+ * hook for that we specify the second argument object and set
+ * onsuccess property
+ *
+ *
  *
  */
 
