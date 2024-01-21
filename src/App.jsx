@@ -10,6 +10,7 @@ import './App.css';
 import ParallelQueries from './pages/ParallelQueries';
 import DynamicParallelQueries from './pages/DynamicParallelQueries';
 import DependentQueries from './pages/DependentQueries';
+import PaginatedQueries from './pages/PaginatedQueries';
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,10 @@ function App() {
         {
           path: '/rq-dependent',
           element: <DependentQueries email='ahmed@gmail.com' />,
+        },
+        {
+          path: '/rq-paginated',
+          element: <PaginatedQueries />,
         },
         {
           path: '/super-heroes',
