@@ -28,11 +28,19 @@ export const useAddSuperHeroData = () => {
   const queryClient = useQueryClient();
 
   return useMutation(addSuperHero, {
-    onSuccess: () => {
+    onSuccess: (data) => {
       // this line is same as we specify the line 5
       // the invalidateQueries will refetch the super
       // heroes query and that is it pretty simple
-      queryClient.invalidateQueries('super-heroes');
+      // queryClient.invalidateQueries('super-heroes');
+
+      // data refers to entire response of post request
+      queryClient.setQueryData('super-heroes', (oldQueryData) => {
+        return {
+          ...oldQueryData,
+          data: [...oldQueryData.data, data.data],
+        };
+      });
     },
   });
 };

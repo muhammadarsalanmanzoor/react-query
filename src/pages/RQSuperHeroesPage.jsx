@@ -3,23 +3,15 @@ import { useSuperHeroes, useAddSuperHeroData } from '../hooks/useSuperHeroes';
 import { Link } from 'react-router-dom';
 
 /**
- * Now everything is working fine but there is room for
- * improvement at the moment after we add a hero we have
- * to manually refetch the super hero list by clicking the
- * fetch hero button this is because as soon as we add a
- * new hero the super-hero query data is out of date wouldn't
- * it be nice if we could tell react query to automatically
- * refetch the super-heros query as soon as the mutation
- * succeeds, react query makes it really simple to achieve
- * that, the feature is called query invalidation, let's
- * see how to implement it.
- *
- * - STEP #1:
- * import useQueryClient client from react query then within
- * the custom mutation hook get hold of the instance, then
- * we need to get hold of the success callback on the useMutation
- * hook for that we specify the second argument object and set
- * onsuccess property
+ * Now instead of refetching a query for the item that was
+ * returned inside new posted hero and wasting a network
+ * call for data that we already have inside the post
+ * response we can take advantage of the object returned
+ * by the mutation function and immediately update the
+ * existing query with the new data, in similar words we
+ * can use the add super hero mutation response to update
+ * the super-heroes query data thereby saving an additional
+ * network request let's see how to this.
  *
  *
  *
