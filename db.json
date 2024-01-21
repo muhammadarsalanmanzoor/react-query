@@ -19,6 +19,16 @@
       "id": "4",
       "name": "New SuperHero",
       "alterEgo": "New AlterEgo"
+    },
+    {
+      "id": "c2cd",
+      "name": "bb",
+      "alterEgo": "aa"
+    },
+    {
+      "id": "a327",
+      "name": "The Falsh",
+      "alterEgo": "MAMO"
     }
   ],
   "friends": [
@@ -44,10 +54,13 @@
   "channels": [
     {
       "id": "codevolution",
-      "courses": ["react", "angular", "vue"]
+      "courses": [
+        "react",
+        "angular",
+        "vue"
+      ]
     }
   ],
-
   "colors": [
     {
       "id": "1",
