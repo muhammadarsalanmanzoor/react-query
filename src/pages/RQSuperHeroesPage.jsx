@@ -3,17 +3,16 @@ import { useSuperHeroes, useAddSuperHeroData } from '../hooks/useSuperHeroes';
 import { Link } from 'react-router-dom';
 
 /**
- * Now instead of refetching a query for the item that was
- * returned inside new posted hero and wasting a network
- * call for data that we already have inside the post
- * response we can take advantage of the object returned
- * by the mutation function and immediately update the
- * existing query with the new data, in similar words we
- * can use the add super hero mutation response to update
- * the super-heroes query data thereby saving an additional
- * network request let's see how to this.
+ * React Query provides two ways to optimistically update your UI
+ * before a mutation has completed. You can either use the onMutate
+ * option to update your cache directly, or leverage the returned
+ * variables to update your UI from the useMutation result.
  *
  *
+ * In the context of forms, this technique helps to make apps feel
+ * more responsive. When a user submits a form, instead of waiting
+ * for the server's response to reflect the changes, the interface
+ * is immediately updated with the expected outcome.
  *
  */
 
