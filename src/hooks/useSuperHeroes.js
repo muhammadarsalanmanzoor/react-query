@@ -1,11 +1,14 @@
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import axios from 'axios';
 
+import { request } from '../utils/axios-utils';
+
 export const useSuperHeroes = (onSuccess, onError) => {
   return useQuery(
     'super-heroes',
     () => {
       return axios.get('http://localhost:4000/superheroes');
+      // return request({ url: 'http://localhost:4000/superheroes' });
     },
     {
       onSuccess: onSuccess,
@@ -43,6 +46,12 @@ export const useSuperHeroes = (onSuccess, onError) => {
 
 const addSuperHero = (heroDetails) => {
   return axios.post('http://localhost:4000/superheroes', heroDetails);
+
+  // return request({
+  //   url: 'http://localhost:4000/superheroes',
+  //   method: 'post',
+  //   data: heroDetails,
+  // });
 };
 
 export const useAddSuperHeroData = () => {

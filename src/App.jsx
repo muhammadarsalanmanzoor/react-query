@@ -13,6 +13,19 @@ import DependentQueries from './pages/DependentQueries';
 import PaginatedQueries from './pages/PaginatedQueries';
 import InfinitePaginatedQueries from './pages/InfinitePaginatedQueries';
 
+/**
+ * Let's see how to work with axios interceptors in this branch,
+ * let me point out that react query has nothing to do with axios
+ * interceptor, however when using axios for network requests it
+ * is pretty common to have a base url the bearer token in header
+ * custom error handling etc..., so i want to show you how to go
+ * about it as i'm pretty sure you might have to do something
+ * similar when building a react app with react query, the first
+ * thing is to create a utils folder within this folder create a
+ * new file called axios-utils.js
+ *
+ */
+
 const queryClient = new QueryClient();
 
 function App() {
